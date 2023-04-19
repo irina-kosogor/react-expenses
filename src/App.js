@@ -1,16 +1,38 @@
+import { useState } from "react";
 import { Costs } from "./components/Costs/Costs";
+import { NewCost } from "./components/NewCost/NewCost";
 import "./App.scss";
 
+const initialData = [
+	{
+		name: "Fridge",
+		date: "05-15-2022",
+		sum: 999.99,
+		id: "476682",
+	},
+	{ name: "Table", date: "08-12-2022", sum: 299.99, id: "060815" },
+	{
+		name: "MacBook",
+		date: "12-04-2023",
+		sum: 1999.99,
+		id: "345432",
+	},
+	{ name: "TV", date: "3-15-2023", sum: 2399.99, id: "674718" },
+];
+
 function App() {
-	const data = [
-		{ title: "Fridge", fullDate: "05-15-2022", price: 999.99, id: 1 },
-		{ title: "Table", fullDate: "08-12-2022", price: 299.99, id: 2 },
-		{ title: "MacBook", fullDate: "12-04-2023", price: 1999.99, id: 3 },
-		{ title: "TV", fullDate: "3-15-2023", price: 2399.99, id: 4 },
-	];
+	const [data, setData] = useState(initialData);
+
+	const addCostHandler = (cost) => {
+		setData((old) => {
+			const newData = [...old, cost];
+			return newData;
+		});
+	};
 
 	return (
 		<div className="App">
+			<NewCost onAddCost={addCostHandler} />
 			<Costs data={data} />
 		</div>
 	);
