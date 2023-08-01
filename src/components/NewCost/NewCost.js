@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CostForm } from "./CostForm";
 import "./NewCost.scss";
 
@@ -10,9 +11,27 @@ export const NewCost = (props) => {
 		props.onAddCost(costData);
 	};
 
+	const [formDisplay, setFormDisplay] = useState(false);
+
+	const openFormHandler = () => {
+		setFormDisplay((old) => !old);
+	};
+
 	return (
 		<div className="new-cost">
-			<CostForm onSaveCostData={saveCostDataHandler} />
+			<div className="new-cost__add-cost">
+				<div className="new-cost__actions">
+					<button type="submit" onClick={openFormHandler}>
+						Add new expense
+					</button>
+				</div>
+			</div>
+			{formDisplay && (
+				<CostForm
+					onSaveCostData={saveCostDataHandler}
+					setFormDisplay={setFormDisplay}
+				/>
+			)}
 		</div>
 	);
 };

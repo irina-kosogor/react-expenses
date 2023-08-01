@@ -11,15 +11,17 @@ export const CostsFilter = (props) => {
 		years.push(currentYear - i);
 	}
 
-	console.log(years);
-
 	return (
 		<div className="costs-filter">
 			<div className="costs-filter__control">
 				<label>Select a year</label>
 				<select value={props.year} onChange={yearChangeHandler}>
-					{years.map((year) => {
-						return <option value={year}>{year}</option>;
+					{years.map((year, i) => {
+						return (
+							<option key={i} value={year}>
+								{year}
+							</option>
+						);
 					})}
 				</select>
 			</div>

@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./CostForm.scss";
 
-export const CostForm = (props) => {
+export const CostForm = ({ onSaveCostData, setFormDisplay }) => {
 	const [inputName, setInputName] = useState("");
 	const [inputSum, setInputSum] = useState("");
 	const [selectedDate, setSelectedDate] = useState("");
@@ -25,15 +25,20 @@ export const CostForm = (props) => {
 
 		const costData = {
 			name: inputName,
-			sum: Number(inputSum).toFixed(2),
-			date: selectedDate.toLocaleDateString("es-CL"),
+			sum: Number(inputSum),
+			date: selectedDate,
 		};
 
-		props.onSaveCostData(costData);
+		console.log(costData);
+		onSaveCostData(costData);
 
 		setInputName("");
 		setInputSum("");
 		setSelectedDate("");
+	};
+
+	const onCancelHandle = () => {
+		setFormDisplay((old) => !old);
 	};
 
 	return (
@@ -71,6 +76,11 @@ export const CostForm = (props) => {
 				</div>
 				<div className="new-cost__actions">
 					<button type="submit">Add expense</button>
+				</div>
+				<div className="new-cost__actions">
+					<button type="submit" onClick={onCancelHandle}>
+						Cancel
+					</button>
 				</div>
 			</div>
 		</form>

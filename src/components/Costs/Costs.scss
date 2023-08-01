@@ -1,8 +1,15 @@
 .costs {
-    padding: 1rem;
-    background-color: #aac4d1;
-    margin: 2rem auto;
-    width: 70rem;
-    max-width: 95%;
-  }
-  
+  padding: 1rem;
+  background-color: #aac4d1;
+  margin: 2rem auto;
+  width: 70rem;
+  max-width: 95%;
+}
+
+.no-data {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 700;
+}

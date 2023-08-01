@@ -24,10 +24,7 @@ function App() {
 	const [data, setData] = useState(initialData);
 
 	const addCostHandler = (cost) => {
-		setData((old) => {
-			const newData = [...old, cost];
-			return newData;
-		});
+		setData((previous) => [...previous, cost]);
 	};
 
 	return (
